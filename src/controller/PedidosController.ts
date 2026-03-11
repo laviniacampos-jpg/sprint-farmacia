@@ -2,7 +2,9 @@ import type { Request, Response } from "express";
 import Pedido from "../model/Pedido.js";
 import type { PedidoDTO } from "../interface/PedidosDTO.js";
 
-class PedidoVendaController extends Pedido {
+class PedidosController extends Pedido {
+
+
 
     static async novo(req: Request, res: Response): Promise<Response> {
         try {
@@ -53,4 +55,4 @@ class PedidoVendaController extends Pedido {
     }
 }
 
-export default PedidoVendaController;
+export default PedidosController;

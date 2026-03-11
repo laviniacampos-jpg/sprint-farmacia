@@ -13,9 +13,9 @@ class PedidoVenda {
     private situacao: boolean = true;
 
     
-    constructor(_idCliente: number, _idCarro: number, _dataPedido: Date, _valorPedido: number) {
+    constructor(_idCliente: number, _idProduto :number, _dataPedido: Date, _valorPedido: number) {
         this.idCliente = _idCliente;
-        this.idProduto = _idCarro;
+        this.idProduto = _idProduto;
         this.dataPedido = _dataPedido;
         this.valorPedido = _valorPedido;
     }
@@ -99,7 +99,7 @@ class PedidoVenda {
                     pv.situacao
                 FROM pedidos_venda pv
                 JOIN clientes c ON pv.id_cliente = c.id_cliente
-                JOIN produto ca ON pv.id_carro = ca.id_carro
+                JOIN produto ca ON pv.id_produto = ca.id_produto
                 WHERE pv.situacao = TRUE;
             `;
 
@@ -114,7 +114,7 @@ class PedidoVenda {
                     idCliente: pedidoBD.id_cliente,           
                     nomeCliente: pedidoBD.nome_cliente,      
                     idProduto: pedidoBD.id_produto,               
-                    marcaProduto: pedidoBD.marca_carro,         
+                    marcaProduto: pedidoBD.marca_produto,         
                     dataPedido: pedidoBD.data_pedido,         
                     valorPedido: pedidoBD.valor_pedido,       
                     situacao: pedidoBD.situacao             
@@ -229,10 +229,10 @@ class PedidoVenda {
     static async removerPedido(idPedido: number): Promise<boolean> {
         try {
            
-            const queryRemoveCarro = `UPDATE pedidos_venda SET situacao=false WHERE id_pedido=$1;`;
+            const queryRemovePedido = `UPDATE pedidos_venda SET situacao=false WHERE id_pedido=$1;`;
 
             
-            const repostaBD = await database.query(queryRemoveCarro, [
+            const repostaBD = await database.query(queryRemovePedido, [
                 idPedido    
             ]);
 

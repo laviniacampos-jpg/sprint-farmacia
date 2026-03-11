@@ -1,7 +1,6 @@
-import type { ClienteDTO } from "../interface/ClienteDTO.js";
-import Cliente from "../model/Cliente.js";
 import type { Request, Response } from "express";
-
+import Cliente from "../model/Cliente.js";
+import type { ClienteDTO } from "../interface/ClienteDTO.js";
 
 class ClienteController extends Cliente {
 
